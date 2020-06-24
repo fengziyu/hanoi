@@ -1,0 +1,26 @@
+scalar ObjectId
+
+type Repo {
+  _id: ObjectId!
+  name: String!
+  repo: String!
+  owner: String!
+  createdAt: Float!
+  updatedAt: String!
+}
+
+input CreateRepoInput {
+  name: String!
+  repo: String!
+  owner: String!
+}
+
+type Query {
+  repo(_id: ObjectId): Repo
+  repos: [Repo!]!
+}
+
+type Mutation {
+  createRepo(createRepoInput: CreateRepoInput!): Repo!
+  removeRepo(_id: ObjectId!): Repo!
+}

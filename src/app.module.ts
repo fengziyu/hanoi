@@ -1,9 +1,20 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { GraphQLModule } from '@nestjs/graphql';
+import { MongooseModule } from '@nestjs/mongoose';
+import { RepoModule } from './repo/repo.module';
+import { join } from 'path';
 
 @Module({
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    MongooseModule.forRoot('mongodb://localhost/hanoi'),
+    GraphQLModule.forRoot({
+      typePaths: ['./**/*.graphql'],
+      definitions: {
+        path: join(process.cwd(), 'src/graphql.classes.ts'),
+        outputAs: 'class',
+      },
+    }),
+    RepoModule,
+  ],
 })
 export class AppModule {}
