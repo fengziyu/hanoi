@@ -25,7 +25,7 @@ export class Repo extends Document {
   createdAt: number;
 
   @Prop()
-  updatedAt: string;
+  updatedAt: number;
 }
 
 export const RepoSchema = SchemaFactory.createForClass(Repo);

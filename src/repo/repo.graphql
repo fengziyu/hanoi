@@ -5,8 +5,8 @@ type Repo {
   name: String!
   repo: String!
   owner: String!
-  createdAt: Float!
-  updatedAt: String!
+  createdAt: Int!
+  updatedAt: Int!
 }
 
 input CreateRepoInput {

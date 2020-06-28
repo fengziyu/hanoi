@@ -1,8 +1,8 @@
 import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
 import { RepoService } from './repo.service';
 import { Repo as RepoDocument } from './schemas/repo.schema';
-import { CreateRepoInput } from 'src/graphql.classes';
 import { UserInputError } from 'apollo-server-core';
+import { CreateRepoDto } from './dto/repo.dto';
 
 @Resolver('Repo')
 export class RepoResolver {
@@ -21,7 +21,7 @@ export class RepoResolver {
   }
 
   @Mutation('createRepo')
-  async createRepo(@Args('createRepoInput') createRepoInput: CreateRepoInput): Promise<RepoDocument> {
+  async createRepo(@Args('createRepoInput') createRepoInput: CreateRepoDto): Promise<RepoDocument> {
     return this.repoService.create(createRepoInput);
   }
 
