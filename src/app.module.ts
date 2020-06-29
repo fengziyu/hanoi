@@ -3,6 +3,8 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
 import { RepoModule } from './repo/repo.module';
 import { join } from 'path';
+import { BuildModule } from './build/build.module';
+import { BuildConfModule } from './build-conf/build-conf.module';
 
 @Module({
   imports: [
@@ -15,6 +17,8 @@ import { join } from 'path';
       },
     }),
     RepoModule,
+    BuildModule,
+    BuildConfModule,
   ],
 })
 export class AppModule {}

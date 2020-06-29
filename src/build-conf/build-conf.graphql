@@ -1,0 +1,27 @@
+scalar ObjectId
+
+type BuildConf {
+  _id: ObjectId!
+  repoId: String!
+  confName: String!
+  deployDir: String!
+  buildCmd: String!
+  createdAt: Int!
+  updatedAt: Int!
+}
+
+input CreateBuildConfInput {
+  repoId: String!
+  confName: String!
+  deployDir: String!
+  buildCmd: String!
+}
+
+type Query {
+  buildConfs(repoId: ObjectId): [BuildConf]
+  buildConf(_id: ObjectId): BuildConf
+}
+
+type Mutation {
+  createBuildConf(createBuildConfInput: CreateBuildConfInput): BuildConf
+}

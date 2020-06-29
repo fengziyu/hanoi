@@ -1,0 +1,33 @@
+scalar ObjectId
+
+type Build {
+  _id: ObjectId!
+  repoId: ObjectId!
+  branch: String!
+  commit: String!
+  version: String!
+  status: String!
+  message: String!
+  buildConf: BuildConf!
+  createdAt: Int!
+  updatedAt: Int!
+}
+
+input CreateBuildInput {
+  repoId: ObjectId!
+  branch: String!
+  commit: String!
+  version: String!
+  status: String!
+  message: String!
+  buildConfId: ObjectId!
+}
+
+type Query {
+  build(_id: ObjectId): Build
+  builds(repoId: ObjectId): [Build!]!
+}
+
+type Mutation {
+  createBuild(createBuildInput: CreateBuildInput): Build!
+}
