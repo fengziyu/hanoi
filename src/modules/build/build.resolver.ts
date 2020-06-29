@@ -2,7 +2,7 @@ import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
 import { BuildService } from './build.service';
 import { Build as BuildDocument } from './schemas/build.schema';
 import { CreateBuildDto } from './dto/createBuild.dto';
-import { BuildConfService } from 'src/build-conf/build-conf.service';
+import { BuildConfService } from 'src/modules/build-conf/build-conf.service';
 import { UserInputError } from 'apollo-server-core';
 
 @Resolver('Build')
@@ -24,7 +24,6 @@ export class BuildResolver {
 
   @Mutation()
   async createBuild(@Args('createBuildInput') createBuildInput: CreateBuildDto): Promise<BuildDocument> {
-    console.log('createBuildInput :>> ', createBuildInput);
     const buildConf = await this.buildConfService.findOne(createBuildInput.buildConfId);
     if (!buildConf) throw new UserInputError('构建配置不存在');
     return this.buildService.create(({

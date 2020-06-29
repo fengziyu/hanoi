@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { BuildConf } from 'src/build-conf/schemas/build-conf.schema';
+import { BuildConf } from 'src/modules/build-conf/schemas/build-conf.schema';
 
 @Schema({
   timestamps: {
