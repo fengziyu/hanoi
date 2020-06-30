@@ -4,11 +4,13 @@ import { BuildResolver } from './build.resolver';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Build, BuildSchema } from './schemas/build.schema';
 import { BuildConfModule } from 'src/modules/build-conf/build-conf.module';
+import { DroneModule } from '../drone/drone.module';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Build.name, schema: BuildSchema }]),
-    BuildConfModule
+    BuildConfModule,
+    DroneModule
   ],
   providers: [BuildService, BuildResolver]
 })

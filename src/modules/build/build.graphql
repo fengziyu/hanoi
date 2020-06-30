@@ -1,12 +1,17 @@
 scalar ObjectId
 
+type BuildRepo {
+  repo: String!
+  owner: String!
+}
+
 type Build {
   _id: ObjectId!
-  repoId: ObjectId!
+  repo: BuildRepo!
   branch: String!
   commit: String!
   version: String!
-  status: String!
+  buildNumber: Int!
   message: String!
   buildConf: BuildConf!
   createdAt: Int!
@@ -14,13 +19,19 @@ type Build {
 }
 
 input CreateBuildInput {
-  repoId: ObjectId!
+  repo: String!
+  owner: String!
   branch: String!
   commit: String!
   version: String!
-  status: String!
   message: String!
   buildConfId: ObjectId!
+}
+
+input CancelBuildInput {
+  repo: String!
+  owner: String!
+  buildNumber: Int!
 }
 
 type Query {
@@ -30,4 +41,5 @@ type Query {
 
 type Mutation {
   createBuild(createBuildInput: CreateBuildInput): Build!
+  cancelBuild(cancelBuildInput: CancelBuildInput): Boolean
 }

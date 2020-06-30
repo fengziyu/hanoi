@@ -5,10 +5,11 @@ import { RepoModule } from './modules/repo/repo.module';
 import { join } from 'path';
 import { BuildModule } from './modules/build/build.module';
 import { BuildConfModule } from './modules/build-conf/build-conf.module';
+import { MONGO_URI } from './config/environments';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/hanoi'),
+    MongooseModule.forRoot(MONGO_URI),
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
       definitions: {

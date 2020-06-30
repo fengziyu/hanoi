@@ -9,7 +9,7 @@ import { BuildConf } from 'src/modules/build-conf/schemas/build-conf.schema';
 })
 export class Build extends Document {
   @Prop()
-  repoId: string;
+  repo: { repo: string, owner: string };
 
   @Prop()
   branch: string;
@@ -21,10 +21,10 @@ export class Build extends Document {
   version: string;
 
   @Prop()
-  status: string;
+  message: string;
 
   @Prop()
-  message: string;
+  buildNumber: number;
 
   @Prop()
   buildConf: BuildConf;
